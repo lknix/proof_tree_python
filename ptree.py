@@ -111,13 +111,13 @@ class ProofTree(object):
     return list(map(lambda leaf: leaf.get_hash(), sorted(self.leaves, key=lambda i: i.position)))
 
 
-def chunks(l, n):
+def chunks(_list, n):
   """
   Return n-sized chunks from a list.
   Args:
-    l  - A list of elements.
-    n  - Number defining the size of a chunk.
+    _list  - A list of elements.
+    n      - Number defining the size of a chunk.
   Returns:
     A list of n-sized chunks.
   """
-  return list(map(lambda i: l[i:i + n], range(0, len(l), n)))
+  return list(map(lambda i: _list[i:i + n], range(0, len(_list), n)))
