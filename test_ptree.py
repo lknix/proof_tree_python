@@ -30,7 +30,7 @@ class LeafTestCase(unittest.TestCase):
 
   def test_get_hash_should_return_precalculated_hash(self):
     leaf = ptree.Leaf(0, "foo", None,
-                    "fcde2b2edba56bf408601fb721fe9b5c338d10ee429ea04fae5511b68fbf8fb9")
+                      "fcde2b2edba56bf408601fb721fe9b5c338d10ee429ea04fae5511b68fbf8fb9")
     self.assertEquals("fcde2b2edba56bf408601fb721fe9b5c338d10ee429ea04fae5511b68fbf8fb9",
                       leaf.get_hash())
 
