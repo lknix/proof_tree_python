@@ -170,3 +170,7 @@ class ChunksTestCase(unittest.TestCase):
   def test_chunks_should_return_chunks_from_odd_length_list(self):
     chunks = ptree.chunks([1, 2, 3, 4, 5, 6, 7], 2)
     self.assertEquals([[1, 2], [3, 4], [5, 6], [7]], chunks)
+
+
+if __name__ == '__main__':
+    unittest.main()
