@@ -17,7 +17,7 @@ class Leaf(object):
     """
     # Don't rely on any pre-calculated values. Always calculate hash digest if raw value present.
     if self.value:
-      return hashlib.sha256(self.value).hexdigest()
+      return hashlib.sha256(self.value.encode("utf-8")).hexdigest()
     elif self.hash_digest:
       return self.hash_digest
     else:
@@ -50,7 +50,7 @@ class ProofTree(object):
     """
     Returns a list of dict leaves.
     """
-    return map(lambda leaf: leaf.to_dict(), self.leaves)
+    return list(map(lambda leaf: leaf.to_dict(), self.leaves))
 
   def init_document(self, data):
     """
@@ -97,7 +97,7 @@ class ProofTree(object):
     for pair in paired_nodes:
       hasher = hashlib.sha256()
       for element in pair:
-        hasher.update(element)
+        hasher.update(element.encode("utf-8"))
       parent_nodes.append(hasher.hexdigest())
     return self._get_root(parent_nodes)
 
@@ -108,7 +108,7 @@ class ProofTree(object):
     Returns:
       A list of hash digests.
     """
-    return map(lambda leaf: leaf.get_hash(), sorted(self.leaves, key=lambda i: i.position))
+    return list(map(lambda leaf: leaf.get_hash(), sorted(self.leaves, key=lambda i: i.position)))
 
 
 def chunks(l, n):
@@ -120,4 +120,4 @@ def chunks(l, n):
   Returns:
     A list of n-sized chunks.
   """
-  return map(lambda i: l[i:i + n], xrange(0, len(l), n))
+  return list(map(lambda i: l[i:i + n], range(0, len(l), n)))
